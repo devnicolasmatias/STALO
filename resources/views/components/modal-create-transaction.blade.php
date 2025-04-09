@@ -15,7 +15,7 @@
 
             <form method="POST" action="{{ route('transactions.store') }}">
                 @csrf
-                <div class="mb-4">
+                <div class="mb-4 text-white">
                     <x-input name="value" label="Valor" placeholder="Digite o valor" labelClass="text-white"/>
                 </div>
 
