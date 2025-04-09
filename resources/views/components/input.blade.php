@@ -6,6 +6,7 @@
     'placeholder' => '',
     'icon' => null,
     'value' => null,
+    'labelClass' => 'text-gray-700',
 ])
 
 @php
@@ -17,7 +18,7 @@
 @endphp
 
 <div class="space-y-2">
-    <label for="{{ $id }}" class="block text-sm font-medium text-gray-700">
+    <label for="{{ $id }}" class="block text-sm font-medium {{ $labelClass }}">
         {{ $label }}
     </label>
 

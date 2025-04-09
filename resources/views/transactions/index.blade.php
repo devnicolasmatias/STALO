@@ -14,10 +14,12 @@
 <div class="flex min-h-screen bg-gray-100">
     <main class="flex-1 p-10">
         <div class="flex items-center justify-between mb-8">
-            <h1 class="text-3xl font-bold text-[#000121]">Lista de Transações</h1>
-            <a href="{{ route('transactions.create') }}" class="bg-[#000121] text-white px-4 py-2 rounded-full hover:bg-gray-800 transition">
-                + Nova Transação
-            </a>
+            <div>
+                <h1 class="text-3xl font-bold text-[#000121]">Lista de Transações</h1>
+            </div>
+            <div>
+                <x-modal-create-transaction />
+            </div>
         </div>
 
         <div class="bg-white shadow-xl rounded-xl overflow-hidden">
@@ -55,12 +57,10 @@
                             </td>
                             <td class="{{ $tdClass }}">
                                 <div class="flex space-x-4 items-center">
-                                    <a href="{{ route('transactions.show', $transaction) }}" title="Ver">
-                                        <x-heroicon-s-eye class="w-5 h-5" style="color: #000121;" />
-                                    </a>
-                                    <a href="{{ route('transactions.edit', $transaction) }}" title="Editar">
-                                        <x-heroicon-s-pencil class="w-5 h-5" style="color: #000121;" />
-                                    </a>
+                                    <x-transaction-view-modal title="Ver Transação">
+                                        <x-transactions.view :transaction="$transaction" />
+                                    </x-transaction-view-modal>
+                                    <x-transaction-edit-modal :transaction="$transaction" />
                                     <form action="{{ route('transactions.destroy', $transaction) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?')">
                                         @csrf
                                         @method('DELETE')
@@ -84,3 +84,4 @@
     </main>
 </div>
 @endsection
+
